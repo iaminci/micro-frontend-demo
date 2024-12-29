@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/gzip-enable: "true"
+    nginx.ingress.kubernetes.io/gzip-types: "text/plain,text/css,application/json,application/javascript,text/xml,application/xml,application/xml+rss,text/javascript"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: app.theinci.in
+    http:
+      paths:
+        - path: /dashboard
+          pathType: Prefix
+          backend:
+            service:
+              name: dashboard-service
+              port:
+                number: 80
+        - path: /invoices
+          pathType: Prefix
+          backend:
+            service:
+              name: invoices-service
+              port:
+                number: 80
+        - path: /server
+          pathType: Prefix
+          backend:
+            service:
+              name: server-service
+              port:
+                number: 80
+        - path: /ui
+          pathType: Prefix
+          backend:
+            service:
+              name: ui-service
+              port:
+                number: 80
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: shell-service
+              port:
+                number: 80

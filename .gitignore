@@ -1,0 +1,17 @@
+# Local
+.DS_Store
+*.local
+*.log*
+
+# Dist
+node_modules
+dist
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+push-images.sh
+docker-compose.yml
+deploy.yml
+docker-commands.sh
